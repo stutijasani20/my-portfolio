@@ -1,4 +1,4 @@
-import { Github, Linkedin, Mail, Twitter } from 'lucide-react'
+import { Github, Linkedin, Mail, Phone } from 'lucide-react'
 
 const Footer = () => {
     return (
@@ -14,17 +14,49 @@ const Footer = () => {
                         </p>
                     </div>
 
-                    <div className="flex flex-col items-center md:items-end gap-4">
-                        <div className="flex items-center gap-6">
-                            <a href="https://github.com/stutijasani20" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
-                                <Github size={20} />
-                            </a>
-                            <a href="https://www.linkedin.com/in/stuti-jasani25/?originalSubdomain=in" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-blue-600 transition-colors">
-                                <Linkedin size={20} />
-                            </a>
-                            <a href="mailto:stutijasani25@gmail.com" className="text-slate-400 hover:text-primary-500 transition-colors">
-                                <Mail size={20} />
-                            </a>
+                    <div className="flex flex-col items-center md:items-end gap-6">
+                        <div className="flex flex-wrap items-center justify-center md:justify-end gap-x-8 gap-y-4">
+                            {[
+                                {
+                                    icon: Github,
+                                    href: 'https://github.com/stutijasani20',
+                                    value: 'stutijasani20',
+                                    color: 'text-slate-700 dark:text-slate-300',
+                                    hoverColor: 'hover:text-slate-900 dark:hover:text-white'
+                                },
+                                {
+                                    icon: Linkedin,
+                                    href: 'https://www.linkedin.com/in/stuti-jasani25/?originalSubdomain=in',
+                                    value: 'stuti-jasani25',
+                                    color: 'text-blue-600 dark:text-blue-400',
+                                    hoverColor: 'hover:text-blue-700 dark:hover:text-blue-300'
+                                },
+                                {
+                                    icon: Mail,
+                                    href: 'mailto:stutijasani25@gmail.com',
+                                    value: 'stutijasani25@gmail.com',
+                                    color: 'text-primary-600 dark:text-primary-400',
+                                    hoverColor: 'hover:text-primary-700 dark:hover:text-primary-300'
+                                },
+                                {
+                                    icon: Phone,
+                                    href: 'tel:+919408199677',
+                                    value: '+91 94081 99677',
+                                    color: 'text-green-600 dark:text-green-400',
+                                    hoverColor: 'hover:text-green-700 dark:hover:text-green-300'
+                                }
+                            ].map((item, idx) => (
+                                <a
+                                    key={idx}
+                                    href={item.href}
+                                    target={item.icon !== Mail && item.icon !== Phone ? "_blank" : undefined}
+                                    rel={item.icon !== Mail && item.icon !== Phone ? "noopener noreferrer" : undefined}
+                                    className={`flex items-center gap-2 text-slate-500 dark:text-slate-400 ${item.hoverColor} transition-colors text-sm font-medium group`}
+                                >
+                                    <item.icon size={16} className={`${item.color} group-hover:scale-110 transition-transform`} />
+                                    <span className="hidden sm:inline">{item.value}</span>
+                                </a>
+                            ))}
                         </div>
                         <p className="text-slate-400 dark:text-slate-600 text-sm">
                             © {new Date().getFullYear()} Stuti Jasani. All rights reserved.
